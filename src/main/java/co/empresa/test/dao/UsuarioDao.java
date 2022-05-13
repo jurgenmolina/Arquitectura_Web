@@ -48,16 +48,18 @@ public class UsuarioDao {
     }
 	
 	public void update(Usuario user) throws SQLException {
+		System.out.println(user.getNombre());
         try {
 	    	PreparedStatement preparedStatement = (PreparedStatement) conexion.setPreparedStatement(UPDATE_USUARIO_SQL);
+	    	System.out.println(preparedStatement);
 	    	preparedStatement.setString(1, user.getNombre());
 	    	preparedStatement.setString(2, user.getEmail());
 	    	preparedStatement.setString(3, user.getPais());
 	    	preparedStatement.setInt(4, user.getId());
-	
+	    	
 	    	conexion.execute();
         } catch (SQLException e) {
-        	
+        	System.out.println("error update");
         }
         
     }
@@ -98,13 +100,13 @@ public class UsuarioDao {
 
 	            // Step 4: Process the ResultSet object.
 	            while (rs.next()) {
-	                String name = rs.getString("name");
+	                String nombre = rs.getString("nombre");
 	                String email = rs.getString("email");
 	                String pais = rs.getString("pais");
-	                user = new Usuario(id, name, email, pais);
+	                user = new Usuario(id, nombre, email, pais);
 	            }
 	        } catch (SQLException e) {
-	        	
+	        	System.out.println("error select");
 	        }
 	        return user;
 	    }

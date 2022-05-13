@@ -122,11 +122,13 @@ public class UsuarioServlet extends HttpServlet {
 	private void updateUsuario(HttpServletRequest request, HttpServletResponse response)
 		    throws SQLException, IOException {
 		        int id = Integer.parseInt(request.getParameter("id"));
-		        String nombre = request.getParameter("name");
+		        
+		        String nombre = request.getParameter("nombre");
 		        String email = request.getParameter("email");
 		        String pais = request.getParameter("pais");
 
 		        Usuario usuario = new Usuario(id, nombre, email, pais);
+		        System.out.println(usuario.getId());
 		        usuarioDao.update(usuario);
 		        response.sendRedirect("list");
 		    }
